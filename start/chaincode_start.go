@@ -168,7 +168,8 @@ func (t *SimpleChaincode) Query(stub shim.ChaincodeStubInterface, function strin
 	// Handle different functions
 	if function == "read" { 
 		//read a variable - function = read , args - given in string argument
-		return t.read(stub, args)
+		return nil, errors.New("This is not an error! First Block Chain Applicaiton to update ledger!!!")
+		// return t.read(stub, args)
 	}
 
 	return nil, errors.New("Received unknown function query: " + function)
@@ -193,7 +194,7 @@ func (t *SimpleChaincode) read(stub shim.ChaincodeStubInterface, args []string) 
 	}
 	jsonResp = "{\"Error\":\"Failed to get state for " + key + "\"}"
 
-	return jsonResp, nil
+	return valAsbytes, nil
 }
 
 // Invoke isur entry point to invoke a chaincode function

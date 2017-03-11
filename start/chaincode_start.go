@@ -168,8 +168,7 @@ func (t *SimpleChaincode) Query(stub shim.ChaincodeStubInterface, function strin
 	// Handle different functions
 	if function == "read" { 
 		//read a variable - function = read , args - given in string argument
-		return  ["My First BlockChain Application!!!"]
-		// return t.read(stub, args)
+		return t.read(stub, args)
 	}
 
 	return nil, errors.New("Received unknown function query: " + function)

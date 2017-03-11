@@ -165,12 +165,10 @@ func (t *SimpleChaincode) Init(stub shim.ChaincodeStubInterface, function string
 
 
 // Query is our entry point for queries
-func (t *SimpleChaincode) Query(stub shim.ChaincodeStubInterface, function string, args []string) ([]byte, error) 
-{
+func (t *SimpleChaincode) Query(stub shim.ChaincodeStubInterface, function string, args []string) ([]byte, error) {
 
 	// Handle different functions
-	if function == "read" 
-	{ 
+	if function == "read" { 
 		//read a variable - function = read , args - given in string argument
 		return nil, errors.New("False Error")
 		// return t.read(stub, args)

@@ -170,7 +170,7 @@ func (t *SimpleChaincode) Query(stub shim.ChaincodeStubInterface, function strin
 	// Handle different functions
 	if function == "read" { 
 		//read a variable - function = read , args - given in string argument
-		return nil, errors.New("False Error")
+		return nil, errors.New("Example code change")
 		// return t.read(stub, args)
 	}
 

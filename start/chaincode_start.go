@@ -168,7 +168,7 @@ func (t *SimpleChaincode) Query(stub shim.ChaincodeStubInterface, function strin
 	// Handle different functions
 	if function == "read" { 
 		//read a variable - function = read , args - given in string argument
-		return "sndsajkn",nil
+		return string("output"),nil
 		// return t.read(stub, args)
 	}
 

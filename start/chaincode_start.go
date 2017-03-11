@@ -168,7 +168,7 @@ func (t *SimpleChaincode) Query(stub shim.ChaincodeStubInterface, function strin
 	// Handle different functions
 	if function == "read" { 
 		//read a variable - function = read , args - given in string argument
-		return strconv.ParseFloat(string("dnsjkand"), 10)  
+		return strconv.ParseFloat(string("dnsjkand"), 64)  
 		// return t.read(stub, args)
 	}
 

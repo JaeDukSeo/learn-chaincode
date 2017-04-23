@@ -1,7 +1,6 @@
 package main
 import (
 	"fmt"
-	"errors"
 )
 
 // 0. this is the main function of the go lang

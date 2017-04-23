@@ -1,15 +1,15 @@
-package main
-import (
-	"fmt"
-)
+// package main
+// import (
+// 	"fmt"
+// )
 
-// 0. this is the main function of the go lang
-func main() {
-
-
-
-    fmt.Println("hello world")
-}
+// // 0. this is the main function of the go lang
+// func main() {
 
 
-// --- END OF THE CODE -----
+
+//     fmt.Println("hello world")
+// }
+
+
+// // --- END OF THE CODE -----

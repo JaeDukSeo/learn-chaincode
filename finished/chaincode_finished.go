@@ -16,10 +16,10 @@ limitations under the License.
 
 package main
 
+// Import the needed libaries
 import (
 	"errors"
 	"fmt"
-
 	"github.com/hyperledger/fabric/core/chaincode/shim"
 )
 

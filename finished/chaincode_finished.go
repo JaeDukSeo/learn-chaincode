@@ -24,9 +24,9 @@ import (
 )
 
 // SimpleChaincode example simple Chaincode implementation
-type SimpleChaincode struct {
-}
+type SimpleChaincode struct {}
 
+// 0. The main start of the program
 func main() {
 	err := shim.Start(new(SimpleChaincode))
 	if err != nil {
@@ -34,7 +34,7 @@ func main() {
 	}
 }
 
-// Init resets all the things
+// 1. The init of the application of the chain code in the network
 func (t *SimpleChaincode) Init(stub shim.ChaincodeStubInterface, function string, args []string) ([]byte, error) {
 	if len(args) != 1 {
 		return nil, errors.New("Incorrect number of arguments. Expecting 1")
@@ -45,10 +45,16 @@ func (t *SimpleChaincode) Init(stub shim.ChaincodeStubInterface, function string
 		return nil, err
 	}
 
+	// Apr 22 - seems like := is the association and the = is the comparitsion
+	err2 := stub.PutState("hello_world2", []byte(args[0]))
+	if err2 != nil {
+		return nil, err
+	}
+
 	return nil, nil
 }
 
-// Invoke isur entry point to invoke a chaincode function
+// 2. Invoke this is how to update the ledger in the blockchain
 func (t *SimpleChaincode) Invoke(stub shim.ChaincodeStubInterface, function string, args []string) ([]byte, error) {
 	fmt.Println("invoke is running " + function)
 
@@ -63,20 +69,7 @@ func (t *SimpleChaincode) Invoke(stub shim.ChaincodeStubInterface, function stri
 	return nil, errors.New("Received unknown function invocation: " + function)
 }
 
-// Query is our entry point for queries
-func (t *SimpleChaincode) Query(stub shim.ChaincodeStubInterface, function string, args []string) ([]byte, error) {
-	fmt.Println("query is running " + function)
-
-	// Handle different functions
-	if function == "read" { //read a variable
-		return t.read(stub, args)
-	}
-	fmt.Println("query did not find func: " + function)
-
-	return nil, errors.New("Received unknown function query: " + function)
-}
-
-// write - invoke function to write key/value pair
+// 2.5 actually writing to te hyperledger blockchain network 
 func (t *SimpleChaincode) write(stub shim.ChaincodeStubInterface, args []string) ([]byte, error) {
 	var key, value string
 	var err error
@@ -95,7 +88,20 @@ func (t *SimpleChaincode) write(stub shim.ChaincodeStubInterface, args []string)
 	return nil, nil
 }
 
-// read - query function to read key/value pair
+// 3. Reading from the hyperledger network - seems like even thou there is just querying there needs to be a hyperledger installed
+func (t *SimpleChaincode) Query(stub shim.ChaincodeStubInterface, function string, args []string) ([]byte, error) {
+	fmt.Println("query is running " + function)
+
+	// Handle different functions
+	if function == "read" { //read a variable
+		return t.read(stub, args)
+	}
+	fmt.Println("query did not find func: " + function)
+
+	return nil, errors.New("Received unknown function query: " + function)
+}
+
+// 3.5 Finishing up the reading part
 func (t *SimpleChaincode) read(stub shim.ChaincodeStubInterface, args []string) ([]byte, error) {
 	var key, jsonResp string
 	var err error
